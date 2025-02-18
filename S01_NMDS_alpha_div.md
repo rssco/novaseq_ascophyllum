@@ -423,5 +423,5 @@ theme_bw(base_line_size = 0) +
 
 ```
 
-![Figure 1 | Variation of SSU diversity and communities across the three datasets.](https://github.com/rssco/novaseq_ascophyllum/blob/main/01_Figures/Figure_1_Combined_nmds_alpha.pdf)<!-- -->
+![Figure 1 | Variation of SSU diversity and communities across the three datasets.](https://github.com/rssco/novaseq_ascophyllum/blob/main/01_Figures/Figure_1_Combined_nmds_alpha.png)<!-- -->
 
