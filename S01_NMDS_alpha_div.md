@@ -19,6 +19,7 @@
 
 ## 1. Library <a name="library"></a>
 ```r
+#!/bin/Rscript
 library(tidyverse)
 library(magrittr)
 library(ggplot2)
@@ -36,6 +37,7 @@ library(ggh4x)
 
 ## 2. Palette colors <a name="colors"></a>
 ```r
+#!/bin/Rscript
 palette_month <- c("January"="#3039b8", 
                    "February"="#9ECAE1",
                    "March" = "#1b4d08",
@@ -72,6 +74,7 @@ palette_Parts_nmds <- c(
 ## 3. NMDS <a name="nmds"></a>
 ### ps object <a name="ps_object"></a>
 ```r
+#!/bin/Rscript
 ps_season <- readRDS("../06_Seasons/00_PHYLOSEQ_OBJECTS/02_ps_season_asco.rds")
 ps_parts <- readRDS("../04_Parts/00_PHYLOSEQ_OBJECTS/05_ps_parts_asco.rds") 
 ps_sites <- readRDS("../03_Sites/00_PHYLOSEQ_OBJECTS/04_ps_sites_asco.rds") 
@@ -79,6 +82,7 @@ ps_sites <- readRDS("../03_Sites/00_PHYLOSEQ_OBJECTS/04_ps_sites_asco.rds")
 
 ### NMDS theme <a name="nmds_theme"></a>
 ```r
+#!/bin/Rscript
 theme_nmds <- theme(axis.line = element_blank(),
                     panel.grid.major = element_blank(),
                     panel.grid.minor = element_blank(),
@@ -95,6 +99,7 @@ theme_nmds <- theme(axis.line = element_blank(),
 
 ### season <a name="season"></a>
 ```r
+#!/bin/Rscript
 ps_season <- prune_samples(sample_names(ps_season) != "16S_L1I1_MARS_BACT_S81_R1", ps_season) #L1I1MARS
 
 # Distance
@@ -129,6 +134,7 @@ p.adonis$aov.tab
 ```
 ### parts <a name="season"></a>
 ```r
+#!/bin/Rscript
 ps_parts_wt_LIB4 <- prune_samples(sample_names(ps_parts) != "16S_L1R3_AVRIL_BACT_S156_R1", ps_parts)
 ps_parts_wt_LIB4 <- prune_samples(sample_names(ps_parts_wt_LIB4) != "16S_L1B4_AVRIL_BACT_S159_R1", ps_parts_wt_LIB4)
 
@@ -169,6 +175,7 @@ p.adonis$aov.tab
 
 ### sites <a name="sites"></a>
 ```r
+#!/bin/Rscript
 ps_sites <- prune_samples(sample_names(ps_sites) != "16S_L1I1_MARS_BACT_S81_R1", ps_sites) #L1I1MARS
 
 # Distance
@@ -221,6 +228,7 @@ anova(bd)
 ### NMDS combined figures <a name="NMDS_combined_figure"></a>
 
 ```r
+#!/bin/Rscript
 figures_combined <- grid.arrange(sites, parts, season, nrow=1) 
 ggsave("02_Figures/05_figures_combined_nmds2.pdf", figures_combined,width = 15, height = 10)
 ```
@@ -228,6 +236,7 @@ ggsave("02_Figures/05_figures_combined_nmds2.pdf", figures_combined,width = 15, 
 ## 4. Alpha diversity <a name="alpha"></a>
 ### ps objects <a name="ps_alpha"></a>
 ```r
+#!/bin/Rscript
 ps_season_asco_norm <- readRDS("../06_Seasons/00_PHYLOSEQ_OBJECTS/03_ps_season_asco_norm.rds")
 ps_season_asco_norm <- subset_samples(ps_season_asco_norm, ID !="L1I1_MARCH")
 ps_sites_asco_norm <- readRDS("../03_Sites/00_PHYLOSEQ_OBJECTS/05_ps_sites_asco_norm.rds")
@@ -238,12 +247,14 @@ ps_parts_asco_norm <- subset_samples(ps_parts_asco_norm, ID !="L1B4_AVRIL_BACT")
 ```
 
 ```r
+#!/bin/Rscript
 source("https://raw.githubusercontent.com/microbiome/microbiome/master/R/boxplot_alpha.R")
 ```
 
 ### seasons <a name="alpha_seasons"></a>
 
 ```r
+#!/bin/Rscript
 tab <-microbiome::alpha(ps_season_asco_norm, index = "all")
 ps1_meta <- meta(ps_season_asco_norm)
 
@@ -266,6 +277,7 @@ print(bmi.pairs)
 ```
 
 ```r
+#!/bin/Rscript
 # MONTH
 
 aov_shannon <- stats::aov(Shannon ~ Month , metadata)
@@ -285,6 +297,7 @@ pairwise_test
 ```
 
 ```r
+#!/bin/Rscript
 tukey <- TukeyHSD(aov_shannon)
 tukey
 
@@ -316,6 +329,7 @@ axis.title.x = element_blank(),
 ### parts <a name="alpha_parts"></a>
 
 ```r
+#!/bin/Rscript
 tab <-microbiome::alpha(ps_parts_asco_norm, index = "all")
 ps1_meta <- meta(ps_parts_asco_norm)
 
@@ -338,6 +352,7 @@ print(bmi.pairs)
 ```
 
 ```r
+#!/bin/Rscript
 factor(metadata$Month)
 
 aov_shannon <- stats::aov(Shannon ~ Month + Algae_part , metadata)
@@ -349,6 +364,7 @@ summary(aov_shannon)
 ```
 
 ```r
+#!/bin/Rscript
 metadata$Algae_part <- factor(metadata$Algae_part, levels = c("Receptacle","Apex", "Medium", "Base")) 
 metadata$Month <- factor(metadata$Month, levels = c("January", "April")) 
 
@@ -364,6 +380,7 @@ theme_bw(base_line_size = 0) +
 ### sites <a name="alpha_sites"></a>
 
 ```r
+#!/bin/Rscript
 tab <-microbiome::alpha(ps_sites_asco_norm, index = "all")
 ps1_meta <- meta(ps_sites_asco_norm)
 
@@ -386,6 +403,7 @@ print(bmi.pairs)
 ```
 
 ```r
+#!/bin/Rscript
 factor(metadata$Site)
 
 aov_shannon <- stats::aov(Shannon ~ Site + Month, metadata)
@@ -397,6 +415,7 @@ summary(aov_shannon)
 ```
 
 ```r
+#!/bin/Rscript
 metadata$Month <- factor(metadata$Month, levels = c("March","November")) 
 
 site <- ggplot(metadata, aes(x = Month, y = Shannon, color=Month)) + 
