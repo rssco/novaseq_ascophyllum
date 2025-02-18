@@ -26,6 +26,7 @@
 
 ## 1. Libraries <a name="library"></a>
 ```r
+#!/bin/Rscript
 library(phyloseq)
 library(tidyverse)
 library(magrittr)
@@ -54,6 +55,7 @@ library(ggridges)
 ### Legend <a name="legend"></a>
 
 ```r
+#!/bin/Rscript
 genus <- c('Other bacteria'="grey",
                                             'Other Phycisphaerae'="#FFCEF4",'Algisphaera'="#FFADC1",
                                             'Other Verrucomicrobiae'="#E2E6BD",'DEV007;NA'="#E5D75D",'Roseibacillus'="#E8C33C",'Luteolibacter'="#EAAF29",
@@ -65,6 +67,7 @@ genus <- c('Other bacteria'="grey",
 ```
 
 ```r
+#!/bin/Rscript
 level_genus <- c(c('Other bacteria',
                                             'Other Phycisphaerae','Algisphaera',
                                             'Other Verrucomicrobiae','DEV007;NA','Roseibacillus','Luteolibacter',
@@ -80,6 +83,7 @@ level_genus <- c(c('Other bacteria',
 On normalized data 
 
 ```r
+#!/bin/Rscript
 otu_tax_ref <- read_tsv("01_Tables/05_otu_tax_ref_asco_norm.tsv")
 otu_tax_ref %<>% tibble::column_to_rownames("ASV")
 
@@ -108,6 +112,7 @@ ps_sites_asco_norm_trans
 ```
 
 ```r
+#!/bin/Rscript
 ps_agglomerate <- tax_glom(ps_sites_asco_norm_trans, taxrank = 'Genus', NArm=FALSE)
 ps_agglomerate
 
@@ -204,6 +209,7 @@ a <- box_sites + site + plot_layout(nrow=2)
 ### Parts <a name="bacteria_parts"></a>
 On normalized data
 ```r
+#!/bin/Rscript
 otu_tax_ref <- read_tsv("01_Table/11_otu_tax_ref_1asv_asco_norm.tsv")
 otu_tax_ref %<>% tibble::column_to_rownames("ASV")
 
@@ -228,6 +234,7 @@ ps_parts_asco_norm_trans
 ```
 
 ```r
+#!/bin/Rscript
 ps_agglomerate <- tax_glom(ps_parts_asco_norm_trans, taxrank = 'Genus', NArm=FALSE)
 ps_agglomerate
 
@@ -325,6 +332,7 @@ b <- box_parts + parts + plot_layout(nrow=2)
 ### Season <a name="bacteria_seasons"></a>
 On normalized data
 ```r
+#!/bin/Rscript
 otu_tax_ref <- read_tsv("01_Tables/05_otu_tax_ref_asco_norm.tsv")
 otu_tax_ref %<>% tibble::column_to_rownames("ASV")
 
@@ -353,6 +361,7 @@ ps_season_asco_norm_trans
 ```
 
 ```r
+#!/bin/Rscript
 ps_agglomerate <- tax_glom(ps_season_asco_norm_trans, taxrank = 'Genus', NArm=FALSE)
 ps_agglomerate
 
@@ -527,7 +536,8 @@ geom_boxplot(aes(fill=Month),alpha=0.4, lwd=0.2) + geom_jitter(shape=16, positio
 ```
 
 ### Combined bacteria <a name="combined_bacteria"></a>
-```{r}
+```r
+#!/bin/Rscript
 library(patchwork)
 #site + parts + plot_layout(guides = 'collect')
 
@@ -541,6 +551,7 @@ library(patchwork)
 ### Legend <a name="legend_euk"></a>
 
 ```r
+#!/bin/Rscript
 genus <- c("Other Eukaryota"="grey",
                                               "Eukaryota;NA;NA;NA;NA;NA"="maroon",
                                              "Other Arthropoda"="#FEEDDE","Hyale"="#E6B197","Pseudocalanus"="#FBA453",'Maxillopoda;NA'="#E6550D","Diarthrodes"="#A63603",
@@ -556,6 +567,7 @@ level_genus <- c("Other Eukaryota",
 
 ### Sites <a name="sites_euk"></a>
 ```r
+#!/bin/Rscript
 taxa <- read.table("~/Documents/ownCloud/11_Rstudio/08_Novaseq/04_Bacteria_analysis/03_Sites/01_Tables/08_taxa_agglomerate_all_barplot_asco_norm.csv", sep=";", header=T)
 taxa %<>% filter(Kingdom=="Eukaryota")
 taxa %<>% filter(!Genus=="Ascophyllum")
@@ -686,6 +698,7 @@ scale_color_manual(values = palette_site) +
 ### Parts <a name="parts_euk"></a>
 
 ```r
+#!/bin/Rscript
 taxa <- read.table("~/Documents/ownCloud/11_Rstudio/08_Novaseq/04_Bacteria_analysis/04_Parts/01_Table/16_barplot_agglomerate_all.csv", sep=";", header=T)
 taxa %<>% filter(Kingdom=="Eukaryota")
 taxa %<>% filter(!Genus=="Ascophyllum")
@@ -786,6 +799,7 @@ geom_boxplot(aes(fill=Algae_part),alpha=0.4, lwd=0.2) + geom_jitter(shape=16, po
 ### Season <a name="season_euk"></a>
 
 ```r
+#!/bin/Rscript
 taxa <- read.table("~/Documents/ownCloud/11_Rstudio/08_Novaseq/04_Bacteria_analysis/06_Seasons/01_Tables/06_barplot_agglomerate_all.csv", sep=";", header=TRUE)
 taxa %<>% filter(Kingdom=="Eukaryota")
 taxa %<>% filter(!Genus=="Ascophyllum") 
@@ -930,6 +944,7 @@ geom_boxplot(aes(fill=Month),alpha=0.4, lwd=0.2) + geom_jitter(shape=16, positio
 
 ### Combined Eukaryotes <a name="combined_euk"></a>
 ```r
+#!/bin/Rscript
 library(patchwork)
 #site + parts + plot_layout(guides = 'collect')
 
