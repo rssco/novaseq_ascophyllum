@@ -1,20 +1,23 @@
-# Table of content  
-[1. Bacteria](#miseq_bacteria)  
-- [DADA2](#miseq_bacteria_dada2)   
-- [Phyloseq](#miseq_phyloseq)  
-- [Decontamination with microdecon](#miseq_decontamination)  
-- [Remove mock](#miseq_remove_mock)  
-- [Remove plastid reads](#miseq_remove_plastid_reads)  
+## Table of content  
+[1. Library](#library)
+[2. Palette colors](#colors)
+[3. NMDS](#nmds)  
+- [Ps object](#ps_object)   
+- [NMDS theme](#nmds_theme)  
+- [Seasons](#season)  
+- [Parts](#parts)  
+- [Sites](#sites)  
+- [NMDS combined figures](#NMDS_combined_figure)
   
-[2. Fungi](#miseq_fungi)  
-- [Cutadapt](#miseq_fungi_cutadapt)  
-- [DADA2](#miseq_fungi_dada2)  
-- [Phyloseq](#miseq_fungi_ps)
-- [Decontamination with Micrdecon](#miseq_fungi_microdecon)
-- [Remove mock](#miseq_fungi_remove_mock)
+[4. Alpha diversity](#miseq_fungi)  
+- [Ps object](#miseq_fungi_cutadapt)  
+- [Season](#alpha_season)  
+- [Parts](#alpha_part)
+- [Sites](#alpha_site)
 
 
-# 1. Library <a name="library"></a>
+
+## 1. Library <a name="library"></a>
 ```r
 library(tidyverse)
 library(magrittr)
@@ -31,7 +34,7 @@ library(RColorBrewer)
 library(ggh4x)
 ```
 
-# 2. Palette colors <a name="colors"></a>
+## 2. Palette colors <a name="colors"></a>
 ```r
 palette_month <- c("January"="#3039b8", 
                    "February"="#9ECAE1",
@@ -66,15 +69,15 @@ palette_Parts_nmds <- c(
 )
 ```
 
-# 3. NMDS <a name="nmds"></a>
-## ps object
+## 3. NMDS <a name="nmds"></a>
+### ps object <a name="ps_object"></a>
 ```r
 ps_season <- readRDS("../06_Seasons/00_PHYLOSEQ_OBJECTS/02_ps_season_asco.rds")
 ps_parts <- readRDS("../04_Parts/00_PHYLOSEQ_OBJECTS/05_ps_parts_asco.rds") 
 ps_sites <- readRDS("../03_Sites/00_PHYLOSEQ_OBJECTS/04_ps_sites_asco.rds") 
 ```
 
-## theme 
+### NMDS theme <a name="nmds_theme"></a>
 ```r
 theme_nmds <- theme(axis.line = element_blank(),
                     panel.grid.major = element_blank(),
@@ -90,7 +93,7 @@ theme_nmds <- theme(axis.line = element_blank(),
                     aspect.ratio = 1)
 ```
 
-## season
+### season <a name="season"></a>
 ```r
 ps_season <- prune_samples(sample_names(ps_season) != "16S_L1I1_MARS_BACT_S81_R1", ps_season) #L1I1MARS
 
@@ -124,7 +127,7 @@ p.adonis$aov.tab
 #Residuals 38    2.2617 0.059518         0.52148           
 #Total     50    4.3370                  1.00000       
 ```
-## parts
+### parts <a name="season"></a>
 ```r
 ps_parts_wt_LIB4 <- prune_samples(sample_names(ps_parts) != "16S_L1R3_AVRIL_BACT_S156_R1", ps_parts)
 ps_parts_wt_LIB4 <- prune_samples(sample_names(ps_parts_wt_LIB4) != "16S_L1B4_AVRIL_BACT_S159_R1", ps_parts_wt_LIB4)
@@ -164,8 +167,7 @@ p.adonis$aov.tab
 #Total      29   2.94830                 1.00000    
 ```
 
-
-## sites 
+### sites <a name="sites"></a>
 ```r
 ps_sites <- prune_samples(sample_names(ps_sites) != "16S_L1I1_MARS_BACT_S81_R1", ps_sites) #L1I1MARS
 
@@ -216,15 +218,15 @@ anova(bd)
 
 ```
 
-## NMDS figures together 
+### NMDS combined figures <a name="NMDS_combined_figure"></a>
 
 ```r
 figures_combined <- grid.arrange(sites, parts, season, nrow=1) 
 ggsave("02_Figures/05_figures_combined_nmds2.pdf", figures_combined,width = 15, height = 10)
 ```
 
-# 4. Alpha diversity
-## ps objects
+## 4. Alpha diversity <a name="alpha"></a>
+### ps objects <a name="ps_alpha"></a>
 ```r
 ps_season_asco_norm <- readRDS("../06_Seasons/00_PHYLOSEQ_OBJECTS/03_ps_season_asco_norm.rds")
 ps_season_asco_norm <- subset_samples(ps_season_asco_norm, ID !="L1I1_MARCH")
@@ -239,7 +241,7 @@ ps_parts_asco_norm <- subset_samples(ps_parts_asco_norm, ID !="L1B4_AVRIL_BACT")
 source("https://raw.githubusercontent.com/microbiome/microbiome/master/R/boxplot_alpha.R")
 ```
 
-## season
+### seasons <a name="alpha_seasons"></a>
 
 ```r
 tab <-microbiome::alpha(ps_season_asco_norm, index = "all")
@@ -311,7 +313,7 @@ axis.title.x = element_blank(),
                     axis.ticks=element_blank()) 
 ```
 
-## parts
+### parts <a name="alpha_parts"></a>
 
 ```r
 tab <-microbiome::alpha(ps_parts_asco_norm, index = "all")
@@ -359,7 +361,7 @@ theme_bw(base_line_size = 0) +
         aspect.ratio = 1, legend.position="none")
 ```
 
-## sites
+### sites <a name="alpha_sites"></a>
 
 ```r
 tab <-microbiome::alpha(ps_sites_asco_norm, index = "all")
@@ -393,21 +395,6 @@ summary(aov_shannon)
 #Month        1  0.810  0.8098   4.304 0.0519 .
 #Residuals   19  3.575  0.1882  
 ```
-
-## Theme
-```r
-theme_alpha <- theme(axis.line = element_blank(),
-                    panel.grid.major = element_blank(),
-                    panel.grid.minor = element_blank(),
-                    panel.background = element_blank(), 
-                    axis.title.x = element_blank(), 
-                    axis.text.x=element_blank(),
-                    axis.ticks=element_blank(), 
-                    panel.grid.major.x = element_blank(), 
-                    panel.border = element_rect(color="black", fill=NA, size=0.3), 
-                    aspect.ratio = 1)
-```
-
 
 ```r
 metadata$Month <- factor(metadata$Month, levels = c("March","November")) 
