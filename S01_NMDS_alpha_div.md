@@ -1,7 +1,7 @@
 ## Table of content  
-[1. Library](#library)
-[2. Palette colors](#colors)
-[3. NMDS](#nmds)  
+[1. Library](#library)  
+[2. Palette colors](#colors)  
+[3. NMDS](#nmds)   
 - [Ps object](#ps_object)   
 - [NMDS theme](#nmds_theme)  
 - [Seasons](#season)  
