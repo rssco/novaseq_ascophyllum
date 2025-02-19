@@ -60,7 +60,7 @@ merged <- merge(merged, sam, by = "variable")
 merged <- read.table("01_Tables/16_core_heatmap_genus.tsv", sep="\t", header=TRUE, dec=".")
 ```
 
-## Plot 
+## 3. Heatmap 
 ```r
 #!/bin/Rscript
 merged$Month <- factor(merged$Month, levels = c("November21","December","January", "February", "March", "April", "May", "June", "July", "August", "September", "October",  "November22")) 
