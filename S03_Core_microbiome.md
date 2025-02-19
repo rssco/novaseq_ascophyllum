@@ -1,6 +1,13 @@
 ## Table of content 
 [1. Library](#library)  
-[2. Palette colors](#colors)  
+
+[2. Venn Diagrams](#venn)  
+- [Ps object](#ps_object)  
+- [Venn parts](#venn_parts)
+- [Venn sites and seasons](#venn_sites_seasons)
+- [Ps core](#ps_core)
+- [Venn core](#venn_core)
+
 [3. NMDS](#nmds)   
 - [Ps object](#ps_object)   
 - [NMDS theme](#nmds_theme)  
@@ -16,11 +23,26 @@
 - [Sites](#alpha_site)
 
 ## 1. Library  <a name="library"></a>
+```r
+#!/bin/Rscript
+library(tidyverse)
+library(magrittr)
+library(ggplot2)
+library(aplot)
+library(phyloseq)
+library(microbiome)
+library(gridExtra)
+library(MicEco)
+library(multcompView)
+library(vegan)
+library(reshape2)
+library(RColorBrewer)
+library(ggh4x)
+```
 
 
-
-## 2. Venn Diagrams
-### ps object
+## 2. Venn Diagrams <a name="venn"></a>
+### ps object <a name="ps_object"></a>
 ```r
 #!/bin/Rscript
 s_season_asco_norm <- readRDS("../06_Seasons/00_PHYLOSEQ_OBJECTS/03_ps_season_asco_norm.rds")
@@ -59,7 +81,7 @@ sample <- read.table("01_Tables/11_samples_sites_seasons.csv", sep=";", header=T
 ps_season_site <- phyloseq(otu_table(ps_season_site@otu_table), tax_table(ps_season_site@tax_table), sample_data(sample))
 ```
 
-### Venn Parts
+### Venn Parts <a name="venn_parts"></a>
 ```r
 #!/bin/Rscript
 plot_parts_abund <- MicEco::ps_venn(ps_parts_asco_norm, "Algae_part", 
@@ -74,7 +96,7 @@ plot_parts_abund <- MicEco::ps_venn(ps_parts_asco_norm, "Algae_part",
 ps_parts_list <- ps_venn(ps_parts_asco_norm, "Algae_part", quantities = list(type=c("percent","counts"), font = 1.5), labels = list(cex = 1.5), col = "white", fill = c("#69000C", "#006027", "#D35000", "#023FA5"),plot = FALSE, fraction = 1)
 ```
 
-### Venns Site & Season
+### Venns Sites & Seasons <a name="venn_sites_seasons"></a>
 ```r
 #!/bin/Rscript
 ps_season_site@sam_data$Season <- factor(ps_season_site@sam_data$Season, levels = c("Fall", "Winter", "Spring", "Summer")) 
@@ -94,7 +116,7 @@ plot_season_site_abund <- MicEco::ps_venn(ps_season_site, "Season",
 ps_season_site_list <- ps_venn(ps_season_site, "Season", quantities = list(type=c("percent","counts"), font = 1.5), labels = list(cex = 1.5), col = "white", fill = c("#69000C", "#006027", "#D35000", "#023FA5"),plot = FALSE, fraction = 1)
 ```
 
-### ps_core 
+### ps_core <a name="ps_core"></a>
 ```r
 #!/bin/Rscript
 parts_core <- ps_parts_list$Apex__Base__Medium__Receptacle #28 ASV
@@ -111,7 +133,7 @@ sample <- read.table("01_Tables/12_samples_sites_seasons_parts.csv", sep=";", he
 ps_core <- phyloseq(otu_table(ps_core@otu_table), tax_table(ps_core@tax_table), sample_data(sample)) #52
 ```
 
-### Venn core
+### Venn core <a name="venn_core"></a>
 ```r
 #!/bin/Rscript
 ps_core@sam_data$Parts <- factor(ps_core@sam_data$Parts, levels = c("Receptacle", "Apex", "Medium", "Base", "Pool")) 
