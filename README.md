@@ -7,8 +7,8 @@ All bioinformatic scripts used for the paper are available here.
 - The scripts for generating the figure 1 are here: [S01_NMDS_alpha_div.md](https://github.com/rssco/novaseq_ascophyllum/blob/main/S01_NMDS_alpha_div.md)  
 - The scripts for figures 2 and 3 are here: [S02_Barplots_bacteria_eukaryotes.md](https://github.com/rssco/novaseq_ascophyllum/blob/main/S02_Barplots_bacteria_eukaryotes.md)  
 - The scripts for the figure 4 are here: [S03_core_microbiome.md](https://github.com/rssco/novaseq_ascophyllum/blob/main/S03_core_microbiome.md)
-- The scripts for the figure 5 are here: []()
-
+- The scripts for the figure 5 are here: [S04_Co-occurence_network.md](https://github.com/rssco/novaseq_ascophyllum/blob/main/S04_Co-occurence_network.md)
+- The scripts for the figure 6 are here: [S05_heatmap_core_microbiome.md](https://github.com/rssco/novaseq_ascophyllum/blob/main/S05_heatmap_core_microbiome.md)
 
 
 Please, note that many figures, at the end, are improved with Inskape software.

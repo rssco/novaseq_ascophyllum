@@ -20,7 +20,7 @@
 
 [7. Positive edges](#Positive_edges)      
 - [Clustering algorithm compairison (modules)](#Clustering)  
-- [Leiden or Spinglass or Louvain ?](#Leidein_Springlass_Louvain)  
+- [Leiden or Spinglass or Louvain ?](#Leidein_Springlass_Louvain)    
 - [Leiden algorithm for modularity](#Leiden)  
 - [Observe network plot](#plot)  
   
@@ -1454,4 +1454,4 @@ taxo + modules_ab + modules_part
 ggsave("02_Figures/11_module_taxo_season_parts.pdf", height = 10, width = 8)
 ```
 
-![Figure 4 | Core microbiome ](https://github.com/rssco/novaseq_ascophyllum/blob/main/01_Figures/Figure_5_Combined_network_degree_taxo_mod.png)<!-- -->
+![Figure 5 | Co-occurence network ](https://github.com/rssco/novaseq_ascophyllum/blob/main/01_Figures/Figure_5_Combined_network_degree_taxo_mod.png)<!-- -->
