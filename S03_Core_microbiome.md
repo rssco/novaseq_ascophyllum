@@ -7,20 +7,13 @@
 - [Venn sites and seasons](#venn_sites_seasons)
 - [Ps core](#ps_core)
 - [Venn core](#venn_core)
+- [Combined Venn](#combined_venn)
 
-[3. NMDS](#nmds)   
-- [Ps object](#ps_object)   
-- [NMDS theme](#nmds_theme)  
-- [Seasons](#season)  
-- [Parts](#parts)  
-- [Sites](#sites)  
-- [NMDS combined figures](#NMDS_combined_figure)
-  
-[4. Alpha diversity](#miseq_fungi)  
-- [Ps object](#miseq_fungi_cutadapt)  
-- [Season](#alpha_season)  
-- [Parts](#alpha_part)
-- [Sites](#alpha_site)
+[3. Specifities](#specificities)   
+- [Ps specificity parts](#ps_specificity_parts)   
+- [Ps specificity season](#ps_specificity_seasons)  
+- [Bubble plot](#bubble_plot)  
+
 
 ## 1. Library  <a name="library"></a>
 ```r
@@ -155,14 +148,14 @@ ps_core_2 <- merge_phyloseq(ps_core_2, tax_table(ps_core), sample_data(ps_core))
 
 ```
 
-## Combined Venn
+## Combined Venn <a name="combined_venn"></a>
 ```r
 #!/bin/Rscript
 grid.arrange(arrangeGrob(arrangeGrob(plot_parts_abund, plot_season_site_abund, nrow = 1), plot_core), ncol=2) 
 ```
 
-## 2. Specificity of each part
-### ps specificity part
+## 3. Specificities <a name="specificities"></a>
+### ps specificity parts <a name="ps_specificity_parts"></a>
 ```r
 #!/bin/Rscript
 parts_apex <- ps_parts_list$Apex
@@ -189,7 +182,7 @@ ps_part_medium <- merge_phyloseq(ps_part_medium, tax_table(ps_parts_asco_norm), 
 ```
 
 
-## ps specificity season 
+## ps specificity seasons <a name="ps_specificity_seasons"></a>
 
 ```r
 #!/bin/Rscript
@@ -215,7 +208,8 @@ ps_spring <- merge_phyloseq(ps_spring, tax_table(ps_season_asco_norm), sample_da
 ps_summer <- merge_phyloseq(ps_summer, tax_table(ps_season_asco_norm), sample_data(ps_season_asco_norm)) 
 ```
 
-## Bubble plot specificity part & season  
+## Bubble plot specificity part & season <a name="bubble_plot"></a>
+
 ```r
 #!/bin/Rscript
 ## Part core
