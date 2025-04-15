@@ -8,7 +8,8 @@
 - [Final table](#Final_table)
 
 [3. Bacteria OTU 99%](#Bacteria_OTU_99%)   
-- [Prepare tables for vsearch](#Prepare_tables_for_vsearch_16S)   
+- [Prepare tables for vsearch](#Prepare_tables_for_vsearch_16S)
+- [Generate fasta](#Generate_fasta_bact)
 - [Launch Vsearch](#Launch_Vsearch_16S)  
 - [Final table](#Final_table_16S)  
   
@@ -199,6 +200,12 @@ ref_tax <- merge(tax, ref, by="ASV")
 otu_tax_ref <- merge(otu, ref_tax, by="ASV")
 write.table(otu_tax_ref, "01_Tables/02_otu_tax_ref_agg_bacteria.csv", sep=";", quote=FALSE)
 ```
+
+### Generate fasta file with ASV_Species+sequence <a name="Generate_fasta_bact"></a>
+```bash
+#!/bin/bash
+cat 02_otu_tax_ref_agg_bacteria.csv | sort -n -k 2 | cut -f1,130 | tr ";" "\n" | sed "s/^ASV/>ASV/g" > bacteria.fasta
+
 
 ### launch Vsearch <a name="Launch_Vsearch_16S"></a>
 ```bash
