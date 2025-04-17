@@ -1,6 +1,6 @@
 # A duo of fungi and complex and dynamic bacterial community networks contribute to shape the Ascophyllum nodosum holobiont
 Authors: Coralie Rousseau, Gwenn Tanguy, Erwan Legeay, Sylvie Rousvoal, Philippe Potin, Catherine Leblanc, Simon M. Dittami  
-Manuscript status: submitted
+Manuscript status: submitted  
 Preprint: https://doi.org/10.1101/2025.03.20.643298
 
 All bioinformatic scripts used for the paper are available here.
